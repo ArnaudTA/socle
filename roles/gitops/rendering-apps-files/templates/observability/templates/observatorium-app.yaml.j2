@@ -1,13 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: observatorium
-  namespace: infra-argocd
+  name: dso-observatorium
+  namespace: {{ dsc.argocdInfra.namespace }}
 spec:
   destination:
     namespace: {{ dsc.observatorium.namespace }}
-    server: https://kubernetes.default.svc
-  project: default
+    name: {% raw %}{{ .Values.destinationClusterName }}
+{% endraw %}
+  project: {{ dsc.argocdInfra.projectName }}
   sources:
   - chart: observatorium
     repoURL: {{ dsc.observatorium.helmRepoUrl }}
