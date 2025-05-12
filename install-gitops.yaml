@@ -89,6 +89,18 @@
         - post-install
         - post-install-harbor
 
+    - role: gitops/post-install/gitlab
+      tags:
+        - post-install
+        - post-install-gitlab
+        - vault-secrets-post-install
+
+    - role: gitops/post-install/gitlabrunner
+      tags:
+        - post-install
+        - post-install-gitlabrunner
+        - vault-secrets-post-install
+
     - role: gitops/post-install/vault
       tags:
         - post-install
@@ -96,13 +108,6 @@
         - vault-secrets-post-install
 
   tasks:
-    - name: Gitlab post-install
-      ansible.builtin.import_role:
-        name: gitops/post-install/gitlab
-      tags:
-        - post-install
-        - post-install-gitlab
-
     - name: Load variables for the vault-secrets post-install role
       ansible.builtin.include_vars:
         file: roles/gitops/vault-secrets/vars/post-install.yaml

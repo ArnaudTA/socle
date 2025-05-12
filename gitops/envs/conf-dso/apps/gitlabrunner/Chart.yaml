@@ -1,0 +1,9 @@
+apiVersion: v2
+dependencies:
+- alias: gitlab-runner
+  name: gitlab-runner
+  repository: https://charts.gitlab.io
+  version: 0.76.1
+name: gitlab-runner
+type: application
+version: 0.76.1
